@@ -1,6 +1,7 @@
 import express, { urlencoded } from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import { routerPrefix } from './constants.js'
 
 const app = express()
 
@@ -17,4 +18,13 @@ app.use(urlencoded({
 }))
 app.use(express.static('Public'))
 app.use(cookieParser())
+
+// routes import
+import userRouter from'./routes/user.route.js'
+
+
+// routes declaration
+
+app.use(`/${routerPrefix}/users`,userRouter)
+
 export {app}
